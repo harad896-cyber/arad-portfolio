@@ -1,74 +1,927 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arad | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="وب‌سایت شخصی و نمونه کارهای آراد">
+
+    <title>آراد | طراح و سازنده دیجیتال</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="hero">
-    <nav>
-      <div class="logo">ARAD<span>.</span></div>
-      <button id="themeToggle" aria-label="Toggle theme">☀</button>
-    </nav>
 
-    <main>
-      <p class="eyebrow">CREATIVE PORTFOLIO</p>
-      <h1>Hi, I'm <span>Arad.</span><br>I build ideas for the web.</h1>
-      <p class="intro">
-        A creative learner focused on web design, digital design and AI-powered projects.
-      </p>
-      <div class="actions">
-        <a href="#projects" class="btn primary">View Projects</a>
-        <a href="#contact" class="btn secondary">Contact Me</a>
-      </div>
+    <!-- پس زمینه -->
+    <div class="background">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+    </div>
+
+
+    <!-- منو -->
+    <header>
+
+        <nav class="navbar">
+
+            <a href="#home" class="logo">
+                ARAD<span>.</span>
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="#home">خانه</a>
+
+                <a href="#about">درباره من</a>
+
+                <a href="#skills">مهارت‌ها</a>
+
+                <a href="#projects">نمونه‌کارها</a>
+
+                <a href="#contact">ارتباط</a>
+
+            </div>
+
+
+            <div class="nav-buttons">
+
+                <button id="themeToggle"
+                    class="theme-btn"
+                    aria-label="تغییر حالت رنگ">
+
+                    ☀
+
+                </button>
+
+
+                <button class="menu-btn"
+                    id="menuBtn">
+
+                    ☰
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- بخش اصلی -->
+
+    <main id="home" class="hero">
+
+        <div class="hero-content">
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                آماده همکاری و ساخت پروژه‌های جدید
+
+            </div>
+
+
+            <h1>
+
+                سلام، من
+
+                <span>آراد</span>
+
+                هستم.
+
+                <br>
+
+                ایده‌ها را به
+                <span>تجربه‌های دیجیتال</span>
+                تبدیل می‌کنم.
+
+            </h1>
+
+
+            <p class="hero-text">
+
+                علاقه‌مند به طراحی وب، طراحی دیجیتال و فناوری‌های هوش مصنوعی.
+                در حال یادگیری، ساختن و تبدیل ایده‌های خلاقانه به پروژه‌های واقعی.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="#projects"
+                    class="btn primary-btn">
+
+                    مشاهده نمونه‌کارها
+
+                    <span>←</span>
+
+                </a>
+
+
+                <a href="#contact"
+                    class="btn secondary-btn">
+
+                    ارتباط با من
+
+                </a>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div>
+
+                    <strong>04+</strong>
+
+                    <span>پروژه</span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>03+</strong>
+
+                    <span>مهارت</span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>2026</strong>
+
+                    <span>شروع مسیر</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="circle">
+
+                <div class="circle-inner">
+
+                    <span>ARAD</span>
+
+                    <small>PORTFOLIO</small>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-card card-one">
+
+                <span>✦</span>
+
+                طراحی خلاقانه
+
+            </div>
+
+
+            <div class="floating-card card-two">
+
+                <span>⌘</span>
+
+                Web Design
+
+            </div>
+
+        </div>
+
     </main>
-  </header>
 
-  <section id="about">
-    <p class="section-label">01 — ABOUT</p>
-    <h2>Turning ideas into digital experiences.</h2>
-    <p>
-      I'm Arad, passionate about learning technology, web development, design,
-      and artificial intelligence. This portfolio is my first step into building
-      real projects and sharing my progress.
-    </p>
-  </section>
 
-  <section id="skills">
-    <p class="section-label">02 — SKILLS</p>
-    <div class="grid">
-      <article><h3>Web Design</h3><p>Modern and responsive interfaces.</p></article>
-      <article><h3>Creative Design</h3><p>Visual concepts and digital branding.</p></article>
-      <article><h3>AI Tools</h3><p>Using AI to accelerate creative workflows.</p></article>
-    </div>
-  </section>
 
-  <section id="projects">
-    <p class="section-label">03 — PROJECTS</p>
-    <div class="projects">
-      <article class="project featured">
-        <span>01</span>
-        <h3>Arad Portfolio</h3>
-        <p>My first GitHub project — a personal portfolio website.</p>
-        <small>HTML · CSS · JavaScript</small>
-      </article>
-      <article class="project">
-        <span>02</span>
-        <h3>Coming Soon</h3>
-        <p>More projects will be added as I learn and build.</p>
-      </article>
-    </div>
-  </section>
+    <!-- درباره من -->
 
-  <section id="contact" class="contact">
-    <p class="section-label">04 — CONTACT</p>
-    <h2>Let's build something.</h2>
-    <a class="email" href="mailto:harad896@gmail.com">harad896@gmail.com</a>
-  </section>
+    <section id="about"
+        class="section about">
 
-  <footer>© 2026 Arad. Built as my first GitHub project.</footer>
-  <script src="script.js"></script>
+        <div class="section-header">
+
+            <span class="section-number">
+
+                ۰۱
+
+            </span>
+
+            <p>
+
+                درباره من
+
+            </p>
+
+        </div>
+
+
+        <div class="about-content">
+
+            <div>
+
+                <h2>
+
+                    ساختن چیزهایی که
+                    <span>واقعاً کاربرد دارند.</span>
+
+                </h2>
+
+            </div>
+
+
+            <div class="about-text">
+
+                <p>
+
+                    من آراد هستم؛ علاقه‌مند به دنیای فناوری،
+                    طراحی و ساخت محصولات دیجیتال.
+
+                    هدف من این است که با یادگیری مداوم،
+                    ایده‌های ساده را به پروژه‌هایی جذاب
+                    و کاربردی تبدیل کنم.
+
+                </p>
+
+
+                <p>
+
+                    این وب‌سایت فضای شخصی من برای نمایش
+                    مسیر یادگیری، مهارت‌ها و پروژه‌هایی است
+                    که در طول مسیر می‌سازم.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- مهارت ها -->
+
+    <section id="skills"
+        class="section skills-section">
+
+        <div class="section-header">
+
+            <span class="section-number">
+
+                ۰۲
+
+            </span>
+
+            <p>
+
+                مهارت‌ها
+
+            </p>
+
+        </div>
+
+
+        <h2 class="section-title">
+
+            چیزهایی که روی آن‌ها
+            <span>کار می‌کنم.</span>
+
+        </h2>
+
+
+        <div class="skills-grid">
+
+
+            <article class="skill-card">
+
+                <div class="skill-icon">
+
+                    &lt;/&gt;
+
+                </div>
+
+
+                <h3>
+
+                    طراحی وب
+
+                </h3>
+
+
+                <p>
+
+                    طراحی صفحات مدرن، واکنش‌گرا
+                    و کاربرپسند برای وب.
+
+                </p>
+
+
+                <div class="skill-tags">
+
+                    <span>HTML</span>
+
+                    <span>CSS</span>
+
+                    <span>JavaScript</span>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="skill-card">
+
+                <div class="skill-icon">
+
+                    ✦
+
+                </div>
+
+
+                <h3>
+
+                    طراحی خلاقانه
+
+                </h3>
+
+
+                <p>
+
+                    ایده‌پردازی بصری، طراحی دیجیتال
+                    و ساخت هویت‌های جذاب.
+
+                </p>
+
+
+                <div class="skill-tags">
+
+                    <span>UI</span>
+
+                    <span>Branding</span>
+
+                    <span>Creative</span>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="skill-card">
+
+                <div class="skill-icon">
+
+                    AI
+
+                </div>
+
+
+                <h3>
+
+                    هوش مصنوعی
+
+                </h3>
+
+
+                <p>
+
+                    استفاده از ابزارهای هوش مصنوعی
+                    برای تولید محتوا و ایده‌های خلاقانه.
+
+                </p>
+
+
+                <div class="skill-tags">
+
+                    <span>AI Tools</span>
+
+                    <span>Prompt</span>
+
+                    <span>Creative AI</span>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- پروژه ها -->
+
+    <section id="projects"
+        class="section projects-section">
+
+        <div class="section-header">
+
+            <span class="section-number">
+
+                ۰۳
+
+            </span>
+
+            <p>
+
+                نمونه‌کارها
+
+            </p>
+
+        </div>
+
+
+        <div class="projects-heading">
+
+            <h2>
+
+                پروژه‌هایی از مسیر
+                <span>یادگیری و ساختن.</span>
+
+            </h2>
+
+
+            <p>
+
+                مجموعه‌ای از پروژه‌ها و ایده‌هایی
+                که در مسیر توسعه مهارت‌هایم روی آن‌ها کار کرده‌ام.
+
+            </p>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+
+            <!-- پروژه 1 -->
+
+            <article class="project-card featured-project">
+
+                <div class="project-top">
+
+                    <span class="project-number">
+
+                        ۰۱
+
+                    </span>
+
+
+                    <span class="project-icon">
+
+                        ↗
+
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <span class="project-category">
+
+                        WEB DESIGN
+
+                    </span>
+
+
+                    <h3>
+
+                        وب‌سایت شخصی آراد
+
+                    </h3>
+
+
+                    <p>
+
+                        طراحی و توسعه یک پورتفولیوی شخصی
+                        برای نمایش مهارت‌ها، پروژه‌ها و مسیر حرفه‌ای.
+
+                    </p>
+
+
+                    <div class="project-tags">
+
+                        <span>HTML</span>
+
+                        <span>CSS</span>
+
+                        <span>JavaScript</span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- پروژه 2 -->
+
+            <article class="project-card">
+
+                <div class="project-top">
+
+                    <span class="project-number">
+
+                        ۰۲
+
+                    </span>
+
+
+                    <span class="project-icon">
+
+                        ✦
+
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <span class="project-category">
+
+                        CREATIVE DESIGN
+
+                    </span>
+
+
+                    <h3>
+
+                        طراحی هویت بصری
+
+                    </h3>
+
+
+                    <p>
+
+                        ایده‌پردازی برای لوگو، رنگ‌بندی
+                        و ساخت هویت دیجیتال برای برندهای شخصی.
+
+                    </p>
+
+
+                    <div class="project-tags">
+
+                        <span>Branding</span>
+
+                        <span>Logo</span>
+
+                        <span>Design</span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- پروژه 3 -->
+
+            <article class="project-card">
+
+                <div class="project-top">
+
+                    <span class="project-number">
+
+                        ۰۳
+
+                    </span>
+
+
+                    <span class="project-icon">
+
+                        AI
+
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <span class="project-category">
+
+                        ARTIFICIAL INTELLIGENCE
+
+                    </span>
+
+
+                    <h3>
+
+                        پروژه‌های هوش مصنوعی
+
+                    </h3>
+
+
+                    <p>
+
+                        استفاده از ابزارهای هوش مصنوعی
+                        برای تولید تصویر، محتوا و ایده‌های خلاقانه.
+
+                    </p>
+
+
+                    <div class="project-tags">
+
+                        <span>AI</span>
+
+                        <span>Prompt</span>
+
+                        <span>Creative</span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- پروژه 4 -->
+
+            <article class="project-card">
+
+                <div class="project-top">
+
+                    <span class="project-number">
+
+                        ۰۴
+
+                    </span>
+
+
+                    <span class="project-icon">
+
+                        ◉
+
+                    </span>
+
+                </div>
+
+
+                <div class="project-content">
+
+                    <span class="project-category">
+
+                        UI DESIGN
+
+                    </span>
+
+
+                    <h3>
+
+                        رابط کاربری مدرن
+
+                    </h3>
+
+
+                    <p>
+
+                        طراحی رابط‌های کاربری مینیمال،
+                        مدرن و واکنش‌گرا با تمرکز بر تجربه کاربر.
+
+                    </p>
+
+
+                    <div class="project-tags">
+
+                        <span>UI</span>
+
+                        <span>UX</span>
+
+                        <span>Responsive</span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- مسیر -->
+
+    <section class="section journey">
+
+        <div class="section-header">
+
+            <span class="section-number">
+
+                ۰۴
+
+            </span>
+
+            <p>
+
+                مسیر من
+
+            </p>
+
+        </div>
+
+
+        <div class="journey-content">
+
+            <h2>
+
+                هنوز در ابتدای مسیرم هستم،
+                اما <span>هر روز در حال ساختنم.</span>
+
+            </h2>
+
+
+            <div class="journey-line">
+
+                <div class="journey-item active">
+
+                    <span></span>
+
+                    <div>
+
+                        <small>شروع</small>
+
+                        <h3>یادگیری و کشف</h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="journey-item">
+
+                    <span></span>
+
+                    <div>
+
+                        <small>اکنون</small>
+
+                        <h3>ساخت پروژه</h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="journey-item">
+
+                    <span></span>
+
+                    <div>
+
+                        <small>آینده</small>
+
+                        <h3>پروژه‌های بزرگ‌تر</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- تماس -->
+
+    <section id="contact"
+        class="contact-section">
+
+        <div class="contact-box">
+
+            <span class="section-number">
+
+                ۰۵
+
+            </span>
+
+
+            <h2>
+
+                بیایید یک چیز
+                <span>جدید بسازیم.</span>
+
+            </h2>
+
+
+            <p>
+
+                برای همکاری، پروژه یا یک گفت‌وگوی دوستانه
+                می‌توانید از طریق شبکه‌های اجتماعی با من در ارتباط باشید.
+
+            </p>
+
+
+            <div class="social-links">
+
+
+                <!-- اینستاگرام -->
+
+                <a href="#"
+                    id="instagramLink"
+                    target="_blank"
+                    class="social-link">
+
+                    <div>
+
+                        <strong>Instagram</strong>
+
+                        <span>@aarad58224</span>
+
+                    </div>
+
+                    <b>↗</b>
+
+                </a>
+
+
+
+                <!-- تلگرام -->
+
+                <a href="#"
+                    id="telegramLink"
+                    target="_blank"
+                    class="social-link">
+
+                    <div>
+
+                        <strong>Telegram</strong>
+
+                        <span>ارتباط با آراد</span>
+
+                    </div>
+
+                    <b>↗</b>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- فوتر -->
+
+    <footer>
+
+        <a href="#home"
+            class="footer-logo">
+
+            ARAD<span>.</span>
+
+        </a>
+
+
+        <p>
+
+            © ۲۰۲۶ — طراحی و ساخته شده توسط آراد
+
+        </p>
+
+
+        <a href="#home"
+            class="back-top">
+
+            ↑ بازگشت به بالا
+
+        </a>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
 </body>
-</html>
+
+              </html>
