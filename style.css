@@ -1554,3 +1554,42 @@ footer {
     }
 
   }
+
+
+/* عکس واقعی آراد در بخش اصلی */
+.profile-frame {
+    width: 360px;
+    height: 480px;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 25px 70px rgba(0,0,0,.35);
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+}
+.profile-frame::after {
+    content: "ARAD";
+    position: absolute;
+    bottom: 18px;
+    left: 20px;
+    letter-spacing: 5px;
+    font-size: 13px;
+    color: white;
+    background: rgba(0,0,0,.28);
+    backdrop-filter: blur(8px);
+    padding: 7px 12px;
+    border-radius: 10px;
+}
+.profile-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+@media (max-width: 700px) {
+    .profile-frame {
+        width: min(330px, 85vw);
+        height: 440px;
+    }
+}
