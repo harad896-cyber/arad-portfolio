@@ -1626,3 +1626,39 @@ footer {
     .motivation-section { padding: 20px 5% 65px; }
     .motivation-box { padding: 30px 22px; }
 }
+
+/* نسخه فشرده‌تر سایت */
+.section { padding: 78px 25px; }
+.projects-section { padding-bottom: 55px; }
+.projects-heading { margin-bottom: 32px; }
+.project-card { min-height: auto; padding: 22px; }
+.project-preview {
+    height: 145px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+    overflow: hidden;
+    position: relative;
+    letter-spacing: 2px;
+}
+.project-preview span { font-size: 30px; font-weight: 800; z-index: 1; }
+.project-preview small { font-size: 10px; opacity: .75; z-index: 1; }
+.preview-web { background: linear-gradient(135deg,#161625,#7c5cff); }
+.preview-brand { background: linear-gradient(135deg,#17120d,#b78b55); }
+.preview-pack { background: linear-gradient(135deg,#10211e,#20b486); }
+.preview-ai { background: linear-gradient(135deg,#161226,#c65cff); }
+.motivation-section { padding: 20px 7% 55px; }
+.motivation-box { padding: 22px 30px; border-radius: 18px; }
+.motivation-box p { margin: 0; font-size: clamp(17px,2vw,22px); line-height: 1.7; }
+.motivation-box > span, .motivation-box small { display:none; }
+.journey.section { padding-top: 65px; padding-bottom: 65px; }
+@media (max-width:550px) {
+  .section { padding: 60px 20px; }
+  .projects-section { padding-bottom: 40px; }
+  .project-preview { height: 125px; }
+  .motivation-section { padding-bottom: 40px; }
+}
