@@ -1662,3 +1662,17 @@ footer {
   .project-preview { height: 125px; }
   .motivation-section { padding-bottom: 40px; }
 }
+
+/* بهبود نمایش تصویر پروفایل بدون تغییر خود عکس */
+.profile-frame {
+    transform: translateZ(0);
+    isolation: isolate;
+    background: #111;
+}
+.profile-frame img {
+    image-rendering: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: scale(1.001);
+    filter: contrast(1.03) brightness(1.02) saturate(1.02);
+}
