@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://harad896-cyber.github.io/arad-portfolio/sitemap.xml
