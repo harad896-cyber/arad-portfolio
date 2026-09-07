@@ -5,14 +5,28 @@ const themeToggle = document.getElementById("themeToggle");
 const instagramLink = document.getElementById("instagramLink");
 const telegramLink = document.getElementById("telegramLink");
 
-// گزینه اول منو: پیام دادن به آراد
-if (navLinks && !document.getElementById("messageAradLink")) {
-  const messageLink = document.createElement("a");
-  messageLink.id = "messageAradLink";
-  messageLink.href = "#support";
-  messageLink.textContent = "💬 پیام دادن به آراد";
-  navLinks.insertBefore(messageLink, navLinks.firstElementChild);
-  messageLink.addEventListener("click", () => navLinks.classList.remove("active"));
+// دسترسی سریع به پیام‌ها و پنل مدیریت
+if (navLinks) {
+  if (!document.getElementById("messageAradLink")) {
+    const messageLink = document.createElement("a");
+    messageLink.id = "messageAradLink";
+    messageLink.href = "#support";
+    messageLink.textContent = "💬 پیام دادن به آراد";
+    navLinks.insertBefore(messageLink, navLinks.firstElementChild);
+  }
+
+  if (!document.getElementById("adminPanelLink")) {
+    const adminLink = document.createElement("a");
+    adminLink.id = "adminPanelLink";
+    adminLink.href = "admin/";
+    adminLink.textContent = "🔐 پنل پیام‌ها";
+    const messageLink = document.getElementById("messageAradLink");
+    if (messageLink) {
+      messageLink.insertAdjacentElement("afterend", adminLink);
+    } else {
+      navLinks.insertBefore(adminLink, navLinks.firstElementChild);
+    }
+  }
 }
 
 if (menuBtn && navLinks) {
@@ -43,7 +57,6 @@ function compactProjectDescriptions() {
   }
 }
 compactProjectDescriptions();
-
 document.addEventListener("DOMContentLoaded", compactProjectDescriptions);
 
 const animatedElements = document.querySelectorAll(".skill-card, .project-card, .journey-item");
@@ -73,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const box = document.createElement("div");
   box.id = "site-feedback";
   box.className = "support-review-box";
-  box.innerHTML = `<div class="support-review-title">⭐ نظر شما درباره سایت و کار من</div><p>نظرت، پیشنهادت یا انتقادت رو با من در میان بگذار.</p><form action="https://formsubmit.co/rahimi2025kh@gmail.com" method="POST" class="support-form"><input type="hidden" name="_subject" value="نظر جدید درباره سایت آراد"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input name="name" type="text" placeholder="نام شما" required><textarea name="message" rows="5" placeholder="نظرت درباره سایت یا کار من..." required><button type="submit">ثبت نظر ←</button></form>`;
+  box.innerHTML = `<div class="support-review-title">⭐ نظر شما درباره سایت و کار من</div><p>نظرت، پیشنهادت یا انتقادت رو با من در میان بگذار.</p><form action="https://formsubmit.co/rahimi2025kh@gmail.com" method="POST" class="support-form"><input type="hidden" name="_subject" value="نظر جدید درباره سایت آراد"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input name="name" type="text" placeholder="نام شما" required><textarea name="message" rows="5" placeholder="نظرت درباره سایت یا کار من..." required></textarea><button type="submit">ثبت نظر ←</button></form>`;
   support.appendChild(box);
 });
 
