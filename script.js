@@ -99,3 +99,37 @@ window.addEventListener(
   },
   { passive: true }
 );
+
+// فرم‌های پشتیبانی و نظر: فقط نام و پیام، بدون ایمیل
+document.addEventListener("DOMContentLoaded", () => {
+  const support = document.getElementById("support");
+  if (!support) return;
+
+  const oldForm = support.querySelector("form");
+  if (oldForm) {
+    const email = oldForm.querySelector('input[name="email"]');
+    if (email) email.remove();
+    const name = oldForm.querySelector('input[name="name"]');
+    if (name) name.placeholder = "نام شما";
+    const message = oldForm.querySelector('textarea[name="message"]');
+    if (message) message.placeholder = "پیام خود را بنویسید...";
+  }
+
+  if (document.getElementById("site-feedback")) return;
+
+  const box = document.createElement("div");
+  box.id = "site-feedback";
+  box.className = "support-review-box";
+  box.innerHTML = `
+    <div class="support-review-title">⭐ نظر شما درباره سایت و کار من</div>
+    <p>نظرت، پیشنهادت یا انتقادت رو با من در میان بگذار.</p>
+    <form action="https://formsubmit.co/rahimi2025kh@gmail.com" method="POST" class="support-form">
+      <input type="hidden" name="_subject" value="نظر جدید درباره سایت آراد">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input name="name" type="text" placeholder="نام شما" required>
+      <textarea name="message" rows="5" placeholder="نظرت درباره سایت یا کار من..." required></textarea>
+      <button type="submit">ثبت نظر ←</button>
+    </form>`;
+  support.appendChild(box);
+});
