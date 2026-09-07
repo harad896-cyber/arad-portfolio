@@ -1676,3 +1676,41 @@ footer {
     transform: scale(1.001);
     filter: contrast(1.03) brightness(1.02) saturate(1.02);
 }
+
+
+/* پشتیبانی */
+.support-section { padding-top: 40px; }
+.support-box {
+    max-width: 850px;
+    margin: 40px auto 0;
+    padding: 45px;
+    border: 1px solid var(--border-color, rgba(255,255,255,.12));
+    border-radius: 24px;
+    background: rgba(255,255,255,.03);
+    backdrop-filter: blur(12px);
+}
+.support-box h2 { font-size: clamp(28px, 4vw, 46px); margin-bottom: 14px; }
+.support-box h2 span { color: var(--primary-color, #8b5cf6); }
+.support-box p { opacity: .75; line-height: 1.9; margin-bottom: 30px; }
+.support-form { display: grid; gap: 14px; }
+.support-form input,
+.support-form textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, rgba(255,255,255,.15));
+    background: rgba(255,255,255,.04);
+    color: inherit;
+    font: inherit;
+    outline: none;
+}
+.support-form input:focus,
+.support-form textarea:focus {
+    border-color: var(--primary-color, #8b5cf6);
+}
+.support-form textarea { resize: vertical; }
+.support-form button { justify-self: start; cursor: pointer; border: none; }
+@media (max-width: 600px) {
+    .support-box { padding: 28px 20px; }
+    .support-form button { width: 100%; justify-content: center; }
+}
