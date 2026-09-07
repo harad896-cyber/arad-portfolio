@@ -1,1 +1,130 @@
-<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>پنل خصوصی آراد</title><style>*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial;background:#0b0d12;color:#f4f4f5}.wrap{max-width:1000px;margin:auto;padding:28px 18px}.login{max-width:430px;margin:12vh auto;padding:30px;border:1px solid #292d38;border-radius:20px;background:#12151d}h1{margin-top:0}.muted{color:#9ba3b4;line-height:1.9}input,button{width:100%;padding:14px;border-radius:10px;font:inherit}input{background:#0b0d12;border:1px solid #343947;color:#fff;margin:12px 0}button{border:0;background:#fff;color:#111;font-weight:bold;cursor:pointer}.hidden{display:none}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:24px}.top button{width:auto;padding:10px 18px}.tabs{display:flex;gap:10px;margin-bottom:20px}.tabs button{width:auto;background:#202532;color:#fff}.tabs button.active{background:#fff;color:#111}.list{display:grid;gap:12px}.card{padding:18px;border:1px solid #292d38;border-radius:15px;background:#12151d}.meta{display:flex;justify-content:space-between;color:#8f97a8;font-size:13px;margin-bottom:10px}.message{white-space:pre-wrap;line-height:1.8}#status{min-height:24px;color:#ffcc80;margin-top:12px}</style></head><body><main class="wrap"><section id="loginBox" class="login"><h1>🔒 پنل خصوصی آراد</h1><p class="muted">برای ورود، ایمیل خودت را وارد کن. لینک ورود امن به ایمیل ارسال می‌شود.</p><form id="loginForm"><input id="email" type="email" placeholder="ایمیل مدیر" required><button type="submit">ارسال لینک ورود</button></form><div id="status"></div></section><section id="dashboard" class="hidden"><div class="top"><div><h1>پیام‌ها</h1><p class="muted">فقط مدیر سایت به این بخش دسترسی دارد.</p></div><button id="logout">خروج</button></div><div class="tabs"><button class="active" data-type="all">همه</button><button data-type="support">پشتیبانی</button><button data-type="feedback">نظرها</button></div><div id="messages" class="list"></div></section></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>const U="https://bkbdcqequyvubjmrbpqo.supabase.co",K="sb_publishable_-wIHh9FKu-lmXSMHRWBbFw_t9u5KutA",sb=supabase.createClient(U,K),ADMIN="harad896@gmail.com";let type="all";const loginBox=document.getElementById("loginBox"),dashboard=document.getElementById("dashboard"),status=document.getElementById("status"),list=document.getElementById("messages");function esc(s){const d=document.createElement("div");d.textContent=s;return d.innerHTML}async function load(){list.innerHTML="<p class='muted'>در حال دریافت...</p>";let q=sb.from("site_messages").select("*").order("created_at",{ascending:false});if(type!=="all")q=q.eq("type",type);const{data,error}=await q;if(error){list.innerHTML="<p>خطا در دریافت پیام‌ها.</p>";return}list.innerHTML=data?.length?data.map(x=>`<article class="card"><div class="meta"><strong>${esc(x.name)}</strong><span>${new Date(x.created_at).toLocaleString("fa-IR")}</span></div><div class="message">${esc(x.message)}</div></article>`).join(""):"<p class='muted'>هنوز پیامی نیست.</p>"}async function check(){const{data:{session}}=await sb.auth.getSession();if(session?.user?.email===ADMIN){loginBox.classList.add("hidden");dashboard.classList.remove("hidden");load()}else if(session){await sb.auth.signOut();status.textContent="اجازه ورود ندارید."}}document.getElementById("loginForm").onsubmit=async e=>{e.preventDefault();const email=document.getElementById("email").value.trim().toLowerCase();if(email!==ADMIN){status.textContent="این ایمیل اجازه دسترسی ندارد.";return}status.textContent="در حال ارسال...";const{error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:location.href}});status.textContent=error?"خطا: "+error.message:"لینک ورود به ایمیل ارسال شد."};document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));b.classList.add("active");type=b.dataset.type;load()});document.getElementById("logout").onclick=async()=>{await sb.auth.signOut();location.reload()};sb.auth.onAuthStateChange(()=>check());check();</script></body></html>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>پنل مدیریت | آراد</title>
+  <link rel="stylesheet" href="style.css?v=20260903-4">
+  <style>
+    .admin-page{min-height:100vh;padding:32px 18px;position:relative;z-index:2}
+    .admin-wrap{max-width:1000px;margin:0 auto}
+    .admin-box{background:rgba(18,21,29,.88);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:28px;backdrop-filter:blur(16px);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    .admin-login{max-width:460px;margin:10vh auto}
+    .admin-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+    .admin-head h1,.admin-login h1{margin:0 0 8px}
+    .admin-muted{color:#9ba3b4;line-height:1.9}
+    .admin-form input{width:100%;padding:14px 16px;border-radius:12px;border:1px solid #343947;background:#0b0d12;color:#fff;font:inherit;margin:14px 0}
+    .admin-btn{border:0;border-radius:12px;padding:12px 18px;background:#fff;color:#111;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+    .admin-btn.secondary{background:#202532;color:#fff;border:1px solid #343947}
+    .admin-form .admin-btn{width:100%}
+    .admin-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .admin-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+    .admin-tabs button{border:1px solid #343947;border-radius:12px;padding:11px 18px;background:#202532;color:#fff;font:inherit;cursor:pointer}
+    .admin-tabs button.active{background:#fff;color:#111}
+    .admin-list{display:grid;gap:12px}
+    .admin-card{padding:18px;border:1px solid #292d38;border-radius:16px;background:rgba(11,13,18,.72)}
+    .admin-meta{display:flex;justify-content:space-between;gap:15px;color:#8f97a8;font-size:13px;margin-bottom:10px;flex-wrap:wrap}
+    .admin-message{white-space:pre-wrap;line-height:1.9;color:#f4f4f5}
+    #status{min-height:26px;color:#ffcc80;margin-top:12px;line-height:1.7}
+    .hidden{display:none!important}
+    @media(max-width:600px){.admin-page{padding:18px 12px}.admin-box{padding:20px}.admin-head{align-items:flex-start;flex-direction:column}.admin-actions{width:100%}.admin-actions .admin-btn{flex:1}}
+  </style>
+</head>
+<body>
+  <div class="background"><div class="glow glow-1"></div><div class="glow glow-2"></div></div>
+  <main class="admin-page">
+    <div class="admin-wrap">
+      <section id="loginBox" class="admin-box admin-login">
+        <div class="admin-head">
+          <div>
+            <h1>🔒 پنل خصوصی آراد</h1>
+            <p class="admin-muted">این بخش به سیستم اصلی سایت متصل است. برای ورود، ایمیل مدیر را وارد کن.</p>
+          </div>
+        </div>
+        <form id="loginForm" class="admin-form">
+          <input id="email" type="email" placeholder="ایمیل مدیر" autocomplete="email" required>
+          <button class="admin-btn" type="submit">ارسال لینک ورود</button>
+        </form>
+        <div id="status"></div>
+        <a class="admin-btn secondary" href="./">← بازگشت به سایت</a>
+      </section>
+
+      <section id="dashboard" class="admin-box hidden">
+        <div class="admin-head">
+          <div>
+            <h1>پیام‌های سایت</h1>
+            <p class="admin-muted">پیام‌های پشتیبانی و نظرهای کاربران، خصوصی و فقط برای مدیر نمایش داده می‌شوند.</p>
+          </div>
+          <div class="admin-actions">
+            <a class="admin-btn secondary" href="./">مشاهده سایت</a>
+            <button id="logout" class="admin-btn secondary" type="button">خروج</button>
+          </div>
+        </div>
+        <div class="admin-tabs">
+          <button class="active" data-type="all" type="button">همه</button>
+          <button data-type="support" type="button">پشتیبانی</button>
+          <button data-type="feedback" type="button">نظرها</button>
+        </div>
+        <div id="messages" class="admin-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL="https://bkbdcqequyvubjmrbpqo.supabase.co";
+    const SUPABASE_KEY="sb_publishable_-wIHh9FKu-lmXSMHRWBbFw_t9u5KutA";
+    const ADMIN_EMAIL="harad896@gmail.com";
+    const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+    let type="all";
+    const loginBox=document.getElementById("loginBox");
+    const dashboard=document.getElementById("dashboard");
+    const status=document.getElementById("status");
+    const list=document.getElementById("messages");
+
+    function esc(value){const d=document.createElement("div");d.textContent=value??"";return d.innerHTML}
+
+    async function loadMessages(){
+      list.innerHTML="<p class='admin-muted'>در حال دریافت پیام‌ها...</p>";
+      let query=sb.from("site_messages").select("*").order("created_at",{ascending:false});
+      if(type!=="all") query=query.eq("type",type);
+      const {data,error}=await query;
+      if(error){list.innerHTML="<p class='admin-muted'>خطا در دریافت پیام‌ها. اتصال Supabase را بررسی کن.</p>";return}
+      list.innerHTML=data?.length?data.map(x=>`<article class="admin-card"><div class="admin-meta"><strong>${esc(x.name)}</strong><span>${new Date(x.created_at).toLocaleString("fa-IR")}</span></div><div class="admin-message">${esc(x.message)}</div></article>`).join(""):"<p class='admin-muted'>هنوز پیامی دریافت نشده است.</p>";
+    }
+
+    async function checkSession(){
+      const {data:{session}}=await sb.auth.getSession();
+      if(session?.user?.email?.toLowerCase()===ADMIN_EMAIL){
+        loginBox.classList.add("hidden");
+        dashboard.classList.remove("hidden");
+        await loadMessages();
+      }else if(session){
+        await sb.auth.signOut();
+        status.textContent="این ایمیل اجازه دسترسی به پنل را ندارد.";
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit",async e=>{
+      e.preventDefault();
+      const email=document.getElementById("email").value.trim().toLowerCase();
+      if(email!==ADMIN_EMAIL){status.textContent="این ایمیل اجازه دسترسی ندارد.";return}
+      status.textContent="در حال ارسال لینک ورود...";
+      const {error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:window.location.href}});
+      status.textContent=error?"خطا: "+error.message:"لینک ورود ارسال شد. ایمیل را باز کن و روی لینک ورود بزن.";
+    });
+
+    document.querySelectorAll(".admin-tabs button").forEach(button=>button.addEventListener("click",()=>{
+      document.querySelectorAll(".admin-tabs button").forEach(x=>x.classList.remove("active"));
+      button.classList.add("active");
+      type=button.dataset.type;
+      loadMessages();
+    }));
+
+    document.getElementById("logout").addEventListener("click",async()=>{await sb.auth.signOut();location.reload()});
+    sb.auth.onAuthStateChange(()=>checkSession());
+    checkSession();
+  </script>
+</body>
+</html>
