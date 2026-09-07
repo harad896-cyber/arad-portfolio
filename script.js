@@ -4,12 +4,48 @@ const navLinks = document.querySelector(".nav-links");
 const themeToggle = document.getElementById("themeToggle");
 const instagramLink = document.getElementById("instagramLink");
 const telegramLink = document.getElementById("telegramLink");
-if (menuBtn && navLinks) { menuBtn.addEventListener("click", () => navLinks.classList.toggle("active")); document.querySelectorAll(".nav-links a").forEach((link) => link.addEventListener("click", () => navLinks.classList.remove("active"))); }
+
+// گزینه اول منو: پیام دادن به آراد
+if (navLinks && !document.getElementById("messageAradLink")) {
+  const messageLink = document.createElement("a");
+  messageLink.id = "messageAradLink";
+  messageLink.href = "#support";
+  messageLink.textContent = "💬 پیام دادن به آراد";
+  navLinks.insertBefore(messageLink, navLinks.firstElementChild);
+  messageLink.addEventListener("click", () => navLinks.classList.remove("active"));
+}
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", () => navLinks.classList.toggle("active"));
+  document.querySelectorAll(".nav-links a").forEach((link) => link.addEventListener("click", () => navLinks.classList.remove("active")));
+}
+
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme === "light") document.body.classList.add("light-mode");
 function updateThemeIcon() { if (!themeToggle) return; themeToggle.textContent = document.body.classList.contains("light-mode") ? "🌙" : "☀"; }
 updateThemeIcon();
 if (themeToggle) { themeToggle.addEventListener("click", () => { document.body.classList.toggle("light-mode"); const theme = document.body.classList.contains("light-mode") ? "light" : "dark"; localStorage.setItem("theme", theme); updateThemeIcon(); }); }
+
+// خلاصه‌سازی نمایشی توضیحات نمونه‌کارها
+function compactProjectDescriptions() {
+  document.querySelectorAll(".project-card p").forEach((description) => {
+    const text = description.textContent.trim();
+    if (!text) return;
+    const firstSentence = text.split(/[.!؟\n]/)[0].trim();
+    const shortText = firstSentence.length > 90 ? firstSentence.slice(0, 87).trimEnd() + "…" : firstSentence;
+    description.textContent = shortText;
+  });
+  if (!document.getElementById("compact-project-style")) {
+    const style = document.createElement("style");
+    style.id = "compact-project-style";
+    style.textContent = `.project-card p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}`;
+    document.head.appendChild(style);
+  }
+}
+compactProjectDescriptions();
+
+document.addEventListener("DOMContentLoaded", compactProjectDescriptions);
+
 const animatedElements = document.querySelectorAll(".skill-card, .project-card, .journey-item");
 if ("IntersectionObserver" in window) { const observer = new IntersectionObserver((entries, currentObserver) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.style.opacity = "1"; entry.target.style.transform = "translateY(0)"; currentObserver.unobserve(entry.target); } }); }, { threshold: 0.1 }); animatedElements.forEach((element) => { element.style.opacity = "0"; element.style.transform = "translateY(30px)"; element.style.transition = "opacity 0.6s ease, transform 0.6s ease"; observer.observe(element); }); } else { animatedElements.forEach((element) => { element.style.opacity = "1"; element.style.transform = "translateY(0)"; }); }
 if (instagramLink) instagramLink.href = "https://www.instagram.com/aarad58224/";
@@ -37,10 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const box = document.createElement("div");
   box.id = "site-feedback";
   box.className = "support-review-box";
-  box.innerHTML = `<div class="support-review-title">⭐ نظر شما درباره سایت و کار من</div><p>نظرت، پیشنهادت یا انتقادت رو با من در میان بگذار.</p><form action="https://formsubmit.co/rahimi2025kh@gmail.com" method="POST" class="support-form"><input type="hidden" name="_subject" value="نظر جدید درباره سایت آراد"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input name="name" type="text" placeholder="نام شما" required><textarea name="message" rows="5" placeholder="نظرت درباره سایت یا کار من..." required></textarea><button type="submit">ثبت نظر ←</button></form>`;
+  box.innerHTML = `<div class="support-review-title">⭐ نظر شما درباره سایت و کار من</div><p>نظرت، پیشنهادت یا انتقادت رو با من در میان بگذار.</p><form action="https://formsubmit.co/rahimi2025kh@gmail.com" method="POST" class="support-form"><input type="hidden" name="_subject" value="نظر جدید درباره سایت آراد"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input name="name" type="text" placeholder="نام شما" required><textarea name="message" rows="5" placeholder="نظرت درباره سایت یا کار من..." required><button type="submit">ثبت نظر ←</button></form>`;
   support.appendChild(box);
 });
-
 
 // اتصال فرم‌های سایت به Supabase (فقط ثبت عمومی؛ خواندن پیام‌ها خصوصی است)
 const SUPABASE_URL = "https://bkbdcqequyvubjmrbpqo.supabase.co";
