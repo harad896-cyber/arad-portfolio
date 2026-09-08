@@ -17,7 +17,7 @@ if (navLinks) {
   if (!document.getElementById("adminPanelLink")) {
     const adminLink = document.createElement("a");
     adminLink.id = "adminPanelLink";
-    adminLink.href = "admin/";
+    adminLink.href = "admin.html";
     adminLink.textContent = "🔐 پنل پیام‌ها";
     const messageLink = document.getElementById("messageAradLink");
     if (messageLink) messageLink.insertAdjacentElement("afterend", adminLink);
@@ -32,11 +32,20 @@ if (menuBtn && navLinks) {
 
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme === "light") document.body.classList.add("light-mode");
-function updateThemeIcon() { if (!themeToggle) return; themeToggle.textContent = document.body.classList.contains("light-mode") ? "🌙" : "☀"; }
+function updateThemeIcon() {
+  if (!themeToggle) return;
+  themeToggle.textContent = document.body.classList.contains("light-mode") ? "🌙" : "☀";
+}
 updateThemeIcon();
-if (themeToggle) { themeToggle.addEventListener("click", () => { document.body.classList.toggle("light-mode"); const theme = document.body.classList.contains("light-mode") ? "light" : "dark"; localStorage.setItem("theme", theme); updateThemeIcon(); }); }
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
+    const theme = document.body.classList.contains("light-mode") ? "light" : "dark";
+    localStorage.setItem("theme", theme);
+    updateThemeIcon();
+  });
+}
 
-// خلاصه‌سازی توضیحات نمونه‌کارها
 function compactProjectDescriptions() {
   document.querySelectorAll(".project-card p").forEach((description) => {
     const text = description.textContent.trim();
@@ -54,7 +63,6 @@ function compactProjectDescriptions() {
 compactProjectDescriptions();
 document.addEventListener("DOMContentLoaded", compactProjectDescriptions);
 
-// نظرات نمونه برای نمایش ظاهر بخش رضایت کاربران؛ این‌ها نظر واقعی نیستند.
 function addSampleReviews() {
   if (document.getElementById("sample-reviews")) return;
   const projects = document.getElementById("projects");
@@ -73,13 +81,39 @@ addSampleReviews();
 document.addEventListener("DOMContentLoaded", addSampleReviews);
 
 const animatedElements = document.querySelectorAll(".skill-card, .project-card, .journey-item");
-if ("IntersectionObserver" in window) { const observer = new IntersectionObserver((entries, currentObserver) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.style.opacity = "1"; entry.target.style.transform = "translateY(0)"; currentObserver.unobserve(entry.target); } }); }, { threshold: 0.1 }); animatedElements.forEach((element) => { element.style.opacity = "0"; element.style.transform = "translateY(30px)"; element.style.transition = "opacity 0.6s ease, transform 0.6s ease"; observer.observe(element); }); } else { animatedElements.forEach((element) => { element.style.opacity = "1"; element.style.transform = "translateY(0)"; }); }
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries, currentObserver) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        currentObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  animatedElements.forEach((element) => {
+    element.style.opacity = "0";
+    element.style.transform = "translateY(30px)";
+    element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    observer.observe(element);
+  });
+} else {
+  animatedElements.forEach((element) => {
+    element.style.opacity = "1";
+    element.style.transform = "translateY(0)";
+  });
+}
 if (instagramLink) instagramLink.href = "https://www.instagram.com/aarad58224/";
-if (telegramLink) { const telegramUsername = "arad123"; telegramLink.href = "https://t.me/" + telegramUsername; }
+if (telegramLink) {
+  const telegramUsername = "arad123";
+  telegramLink.href = "https://t.me/" + telegramUsername;
+}
 const header = document.querySelector("header");
-window.addEventListener("scroll", () => { if (!header) return; header.style.boxShadow = window.scrollY > 50 ? "0 10px 30px rgba(0,0,0,0.15)" : "none"; }, { passive: true });
+window.addEventListener("scroll", () => {
+  if (!header) return;
+  header.style.boxShadow = window.scrollY > 50 ? "0 10px 30px rgba(0,0,0,0.15)" : "none";
+}, { passive: true });
 
-// پشتیبانی و نظر کاربران: فقط نام + پیام، بدون درخواست ایمیل
 document.addEventListener("DOMContentLoaded", () => {
   const support = document.getElementById("support");
   if (!support) return;
@@ -99,11 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const box = document.createElement("div");
   box.id = "site-feedback";
   box.className = "support-review-box";
-  box.innerHTML = `<div class="support-review-title">⭐ نظر شما درباره سایت و کار من</div><p>نظرت، پیشنهادت یا انتقادت رو با من در میان بگذار.</p><form action="https://formsubmit.co/rahimi2025kh@gmail.com" method="POST" class="support-form"><input type="hidden" name="_subject" value="نظر جدید درباره سایت آراد"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input name="name" type="text" placeholder="نام شما" required><textarea name="message" rows="5" placeholder="نظرت درباره سایت یا کار من..." required></textarea><button type="submit">ثبت نظر ←</button></form>`;
+  box.innerHTML = `<div class="support-review-title">⭐ نظر شما درباره سایت و کار من</div><p>نظرت، پیشنهادت یا انتقادت رو با من در میان بگذار.</p><form class="support-form"><input name="name" type="text" placeholder="نام شما" required><textarea name="message" rows="5" placeholder="نظرت درباره سایت یا کار من..." required></textarea><button type="submit">ثبت نظر ←</button></form>`;
   support.appendChild(box);
 });
 
-// اتصال فرم‌ها به Supabase؛ پیام‌ها در پنل خصوصی قابل مشاهده‌اند.
 const SUPABASE_URL = "https://bkbdcqequyvubjmrbpqo.supabase.co";
 const SUPABASE_KEY = "sb_publishable_-wIHh9FKu-lmXSMHRWBbFw_t9u5KutA";
 async function saveSiteMessage(form, type) {
@@ -112,11 +145,19 @@ async function saveSiteMessage(form, type) {
   const button = form.querySelector('button[type="submit"]');
   if (!name || !message) return;
   const original = button?.textContent;
-  if (button) { button.disabled = true; button.textContent = "در حال ارسال..."; }
+  if (button) {
+    button.disabled = true;
+    button.textContent = "در حال ارسال...";
+  }
   try {
     const res = await fetch(SUPABASE_URL + "/rest/v1/site_messages", {
       method: "POST",
-      headers: { "apikey": SUPABASE_KEY, "Authorization": "Bearer " + SUPABASE_KEY, "Content-Type": "application/json", "Prefer": "return=minimal" },
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": "Bearer " + SUPABASE_KEY,
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal"
+      },
       body: JSON.stringify({ name, message, type })
     });
     if (!res.ok) throw new Error("ارسال ناموفق بود");
@@ -125,7 +166,12 @@ async function saveSiteMessage(form, type) {
   } catch (err) {
     if (button) button.textContent = "خطا در ارسال، دوباره تلاش کنید";
   } finally {
-    setTimeout(() => { if (button) { button.disabled = false; button.textContent = original; } }, 2200);
+    setTimeout(() => {
+      if (button) {
+        button.disabled = false;
+        button.textContent = original;
+      }
+    }, 2200);
   }
 }
 document.addEventListener("submit", (e) => {
